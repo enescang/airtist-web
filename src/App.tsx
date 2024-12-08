@@ -1,33 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Box, Grid2, Typography } from '@mui/material'
 import './App.css'
+import ResponsiveAppBar from './components/Header'
+import video1 from './assets/video/video_1.mp4';
+import ReactPlayer from 'react-player';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ResponsiveAppBar>
+
+      </ResponsiveAppBar>
+
+      <Box sx={{ marginX: 4, marginTop: 4 }}>
+        <Typography sx={{ fontSize: 56 }}>Generate your shorts in seconds with high quality</Typography>
+        <Typography sx={{ fontSize: 28 }}>Ai powered short video generator</Typography>
+
+        <Grid2 container sx={{}}>
+          {
+            [1,2,3,4].map(item => {
+              return <>
+                <Grid2 key={item} size={12 / 4}>
+                  <Box sx={{ height: 240, background: 'red' }}>
+                    <ReactPlayer
+                    width={'100%'}
+                    height={'100%'}
+                    style={{
+                      height: '100%',
+                      width:'100%',
+                      objectFit:'cover'
+                    }}
+                    url={video1}
+                    controls={true}
+                    />
+                  </Box>
+                </Grid2>
+              </>
+            })
+          }
+        </Grid2>
+      </Box>
     </>
   )
 }
